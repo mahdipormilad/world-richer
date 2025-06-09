@@ -11,7 +11,7 @@
   }
   body {
     font-family: 'Inter', 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1c1f3a, #2a2f58);
+    background: linear-gradient(135deg, #0f172a, #1e293b);
     color: #e0e7ff;
     display: flex; justify-content: center; align-items: center;
     height: 100vh;
@@ -20,77 +20,78 @@
     -moz-osx-font-smoothing: grayscale;
   }
   .container {
-    background: rgba(28, 31, 58, 0.75);
-    backdrop-filter: saturate(180%) blur(15px);
+    background: rgba(14, 22, 41, 0.85);
+    backdrop-filter: saturate(180%) blur(18px);
     border-radius: 2rem;
     box-shadow:
-      0 0 20px rgba(59, 130, 246, 0.5),
-      0 0 40px rgba(147, 197, 253, 0.25);
+      0 0 25px rgba(96, 165, 250, 0.6),
+      0 0 50px rgba(59, 130, 246, 0.3);
     padding: 3rem 4rem;
     max-width: 700px;
     width: 100%;
     text-align: center;
-    border: 1px solid rgba(147, 197, 253, 0.2);
+    border: 1.5px solid rgba(96, 165, 250, 0.3);
+    user-select: none;
   }
   header {
     display: flex; justify-content: center; align-items: center; gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
   header svg {
-    width: 48px; height: 48px;
+    width: 52px; height: 52px;
     fill: #3b82f6;
-    filter: drop-shadow(0 0 5px #3b82f6);
+    filter: drop-shadow(0 0 6px #3b82f6);
     animation: pulse 3s infinite ease-in-out;
   }
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(1.1); }
+    50% { opacity: 0.75; transform: scale(1.1); }
   }
   h1 {
-    font-weight: 700; font-size: 2.8rem;
+    font-weight: 700; font-size: 3rem;
     color: #bfdbfe;
-    text-shadow: 0 0 6px #3b82f6;
-    user-select: none;
+    text-shadow: 0 0 8px #3b82f6;
   }
   .counter-wrapper {
     width: 100%;
-    max-width: 650px;
-    height: 4.5rem;
+    max-width: 670px;
+    height: 5rem;
     overflow: hidden;
-    border-radius: 1rem;
-    border: 2px solid #60a5fa;
-    background: rgba(14, 22, 41, 0.9);
+    border-radius: 1.2rem;
+    border: 3px solid #60a5fa;
+    background: rgba(14, 22, 41, 0.95);
     margin: 2rem auto 3rem;
     box-shadow:
-      0 0 10px #60a5fa,
-      inset 0 0 10px #3b82f6;
+      0 0 12px #60a5fa,
+      inset 0 0 15px #3b82f6;
     position: relative;
   }
   .counter {
     position: absolute;
     white-space: nowrap;
-    font-size: 3.2rem;
+    font-size: 3.6rem;
     font-weight: 700;
     color: #60a5fa;
     text-shadow:
-      0 0 5px #60a5fa,
-      0 0 15px #3b82f6,
-      0 0 30px #2563eb;
+      0 0 6px #60a5fa,
+      0 0 20px #3b82f6,
+      0 0 40px #2563eb;
     will-change: transform;
     user-select: none;
   }
   .details {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #a5b4fc;
     user-select: none;
-    line-height: 1.6;
+    line-height: 1.7;
   }
   .details p {
-    margin: 0.4rem 0;
+    margin: 0.5rem 0;
     transition: color 0.3s ease;
   }
   .details p:hover {
     color: #3b82f6;
+    cursor: default;
   }
   #passwordGate {
     position: fixed;
@@ -101,19 +102,19 @@
     align-items: center;
     flex-direction: column;
     z-index: 9999;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
   }
   #passwordInput {
-    padding: 0.8rem 1.2rem;
-    border-radius: 1rem;
+    padding: 1rem 1.4rem;
+    border-radius: 1.2rem;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     outline: none;
-    width: 260px;
-    margin-bottom: 1rem;
+    width: 280px;
+    margin-bottom: 1.2rem;
     text-align: center;
-    box-shadow: 0 0 12px #3b82f6 inset;
-    background: rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 15px #3b82f6 inset;
+    background: rgba(59, 130, 246, 0.12);
     color: #e0e7ff;
     transition: background 0.3s ease;
   }
@@ -124,14 +125,14 @@
     background: rgba(59, 130, 246, 0.3);
   }
   #submitBtn {
-    padding: 0.9rem 2.4rem;
-    border-radius: 1rem;
+    padding: 1rem 2.6rem;
+    border-radius: 1.2rem;
     border: none;
     font-weight: 700;
     background: #3b82f6;
     color: #0f172a;
     cursor: pointer;
-    box-shadow: 0 0 20px #3b82f6;
+    box-shadow: 0 0 22px #3b82f6;
     transition: background 0.3s ease;
     user-select: none;
   }
@@ -144,13 +145,21 @@
       max-width: 90vw;
     }
     .counter-wrapper {
-      height: 3.5rem;
+      height: 4rem;
     }
     .counter {
-      font-size: 2.4rem;
+      font-size: 2.8rem;
     }
     h1 {
-      font-size: 2rem;
+      font-size: 2.4rem;
+    }
+    #passwordInput {
+      width: 220px;
+      font-size: 1.1rem;
+    }
+    #submitBtn {
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
     }
   }
 </style>
@@ -187,21 +196,79 @@
 <script>
   const PASSWORD = "dream2025";
 
-  document.getElementById('submitBtn').addEventListener('click', () => {
-    const input = document.getElementById('passwordInput').value.trim();
+  const passwordGate = document.getElementById('passwordGate');
+  const mainContent = document.getElementById('mainContent');
+  const passwordInput = document.getElementById('passwordInput');
+  const submitBtn = document.getElementById('submitBtn');
+  const counterEl = document.getElementById('counter');
+
+  function savePassword() {
+    localStorage.setItem('accessPassword', PASSWORD);
+  }
+
+  function checkSavedPassword() {
+    return localStorage.getItem('accessPassword') === PASSWORD;
+  }
+
+  function formatNumberBigInt(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function startCounterAnimation() {
+    const startTimestamp = new Date("2025-06-09T00:00:00Z").getTime();
+    const ratePerSecond = BigInt(20000000000);
+
+    function update() {
+      const now = Date.now();
+      const diffSeconds = BigInt(Math.floor((now - startTimestamp) / 1000));
+      const currentValue = ratePerSecond * diffSeconds;
+
+      counterEl.textContent = "$" + formatNumberBigInt(currentValue);
+
+      const speed = 0.5;
+      const currentX = parseFloat(counterEl.style.transform.replace("translateX(", "").replace("px)", "")) || 0;
+      let newX = currentX - speed;
+      const maxScroll = -counterEl.offsetWidth;
+      if (newX < maxScroll) {
+        newX = counterEl.parentElement.offsetWidth;
+      }
+      counterEl.style.transform = `translateX(${newX}px)`;
+
+      requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  function tryAccess() {
+    const input = passwordInput.value.trim();
     if (input === PASSWORD) {
-      document.getElementById('passwordGate').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
+      savePassword();
+      passwordGate.style.display = "none";
+      mainContent.style.display = "block";
       startCounterAnimation();
     } else {
-      alert('Incorrect password.');
-      document.getElementById('passwordInput').value = '';
-      document.getElementById('passwordInput').focus();
+      alert("Incorrect password. Try again.");
+      passwordInput.value = "";
+      passwordInput.focus();
+    }
+  }
+
+  submitBtn.addEventListener('click', tryAccess);
+
+  passwordInput.addEventListener('keydown', (e) => {
+    if (e.key === "Enter") {
+      tryAccess();
     }
   });
 
-  const startTime = new Date("2025-06-09T00:00:00Z").getTime();
-  const ratePerSecond = 20000000000;
+  if (checkSavedPassword()) {
+    passwordGate.style.display = "none";
+    mainContent.style.display = "block";
+    startCounterAnimation();
+  } else {
+    passwordInput.focus();
+  }
+</script>
 
-  const counterEl = document.getElementById('counter');
-  const wrapperEl = document.querySelector
+</body>
+</html>

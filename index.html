@@ -4,19 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>World Getting Richer Every Moment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f1f5f9;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 2rem;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      backdrop-filter: blur(20px);
     }
     h1 {
       font-size: 2.5rem;
@@ -24,17 +35,54 @@
     }
     .counter {
       font-size: 2rem;
-      font-weight: bold;
+      font-weight: 600;
       color: #38bdf8;
-      margin-bottom: 2rem;
+      margin: 1.5rem 0;
+      transition: all 0.3s ease;
     }
-    .details {
-      font-size: 1rem;
+    .details p {
+      margin: 0.3rem 0;
       color: #cbd5e1;
+    }
+    #passwordGate {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    #passwordInput {
+      padding: 0.7rem 1rem;
+      border-radius: 1rem;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+      margin-bottom: 1rem;
+    }
+    #submitBtn {
+      padding: 0.7rem 1.5rem;
+      background: #38bdf8;
+      border: none;
+      color: #0f172a;
+      border-radius: 1rem;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+
+<div id="passwordGate">
+  <input type="password" id="passwordInput" placeholder="Enter Password">
+  <button id="submitBtn">Enter</button>
+</div>
+
+<div class="container" id="mainContent" style="display:none;">
   <h1>World Getting Richer Every Moment</h1>
   <div class="counter" id="counter">$0</div>
   <div class="details">
@@ -42,22 +90,36 @@
     <p>Every minute: $1,200,000,000,000</p>
     <p>Every hour: $72,000,000,000,000</p>
     <p>Every day: $1,728,000,000,000,000</p>
+    <p>Every month: $52,560,000,000,000,000</p>
     <p>Every year: $630,720,000,000,000,000</p>
   </div>
+</div>
 
-  <script>
-    const startTime = new Date("2025-06-09T00:00:00Z").getTime(); // UTC start time
-    const ratePerSecond = 20000000000;
-
-    function updateCounter() {
-      const now = new Date().getTime();
-      const secondsPassed = Math.floor((now - startTime) / 1000);
-      const total = ratePerSecond * secondsPassed;
-      document.getElementById('counter').textContent = "$" + total.toLocaleString();
+<script>
+  const PASSWORD = "dream2025";
+  document.getElementById('submitBtn').addEventListener('click', () => {
+    const input = document.getElementById('passwordInput').value;
+    if (input === PASSWORD) {
+      document.getElementById('passwordGate').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    } else {
+      alert('Incorrect password.');
     }
+  });
 
-    setInterval(updateCounter, 1000);
-    updateCounter();
-  </script>
+  const startTime = new Date("2025-06-09T00:00:00Z").getTime();
+  const ratePerSecond = 20000000000;
+
+  function updateCounter() {
+    const now = new Date().getTime();
+    const secondsPassed = Math.floor((now - startTime) / 1000);
+    const total = ratePerSecond * secondsPassed;
+    document.getElementById('counter').textContent = "$" + total.toLocaleString();
+  }
+
+  setInterval(updateCounter, 1000);
+  updateCounter();
+</script>
+
 </body>
 </html>

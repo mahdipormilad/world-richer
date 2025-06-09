@@ -1,163 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>World’s Wealth in Real Time</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Getting Richer Every Moment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #e0e7ff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
-      position: relative;
-      overflow-x: hidden;
-    }
-    .bg-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0.06;
-      background-image: url('https://i.imgur.com/uJ2QhsN.jpg');
-      background-size: cover;
-      background-position: center;
-      pointer-events: none;
-    }
-    .title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #facc15;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 10px #fcd34d;
-      z-index: 2;
-      text-align: center;
-    }
-    .main-counter {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #60a5fa;
-      text-shadow: 0 0 8px #3b82f6, 0 0 20px #2563eb;
-      margin-bottom: 2.5rem;
-      text-align: center;
-      word-break: break-word;
-      max-width: 100vw;
-      z-index: 2;
-    }
-    .details {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 1rem;
-      padding: 1.5rem 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      max-width: 500px;
-      text-align: center;
-      z-index: 2;
-    }
-    .details p {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-      color: #a5b4fc;
-    }
-    #passwordGate {
-      position: fixed;
-      inset: 0;
-      background: #0f172a;
+      color: #f1f5f9;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      z-index: 1000;
-    }
-    #passwordInput {
-      padding: 1rem;
-      border-radius: 0.75rem;
-      border: none;
-      font-size: 1.1rem;
-      width: 250px;
-      margin-bottom: 1rem;
+      height: 100vh;
       text-align: center;
     }
-    #submitBtn {
-      padding: 0.8rem 2rem;
-      font-weight: bold;
-      background: #3b82f6;
-      color: #fff;
-      border: none;
-      border-radius: 0.75rem;
-      cursor: pointer;
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 2rem;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      backdrop-filter: blur(20px);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .counter {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #38bdf8;
+      margin: 1.5rem 0;
+    }
+    .details p {
+      margin: 0.3rem 0;
+      color: #cbd5e1;
     }
   </style>
 </head>
 <body>
-  <div class="bg-image"></div>
-  <div id="passwordGate">
-    <input type="password" id="passwordInput" placeholder="Enter Password" />
-    <button id="submitBtn">Enter</button>
+
+<div class="container">
+  <h1>World Getting Richer Every Moment</h1>
+  <div class="counter" id="counter">$0</div>
+  <div class="details">
+    <p>Every second: $20,000,000,000</p>
+    <p>Every minute: $1,200,000,000,000</p>
+    <p>Every hour: $72,000,000,000,000</p>
+    <p>Every day: $1,728,000,000,000,000</p>
+    <p>Every month: $52,560,000,000,000,000</p>
+    <p>Every year: $630,720,000,000,000,000</p>
   </div>
+</div>
 
-  <div id="mainContent" style="display:none;">
-    <h1 class="title">World’s Wealth in Real Time</h1>
-    <div class="main-counter" id="counter">$0</div>
-    <div class="details">
-      <p>Every second: $20,000,000,000</p>
-      <p>Every minute: $1,200,000,000,000</p>
-      <p>Every hour: $72,000,000,000,000</p>
-      <p>Every day: $1,728,000,000,000,000</p>
-      <p>Every month: $52,560,000,000,000,000</p>
-      <p>Every year: $630,720,000,000,000,000</p>
-    </div>
-  </div>
+<script>
+  const startTime = new Date("2025-06-09T00:00:00Z").getTime();
+  const ratePerSecond = 20000000000;
 
-  <script>
-    const PASSWORD = "dream2025";
-    const passwordGate = document.getElementById('passwordGate');
-    const mainContent = document.getElementById('mainContent');
-    const passwordInput = document.getElementById('passwordInput');
-    const submitBtn = document.getElementById('submitBtn');
-    const counterEl = document.getElementById('counter');
+  function updateCounter() {
+    const now = new Date().getTime();
+    const secondsPassed = Math.floor((now - startTime) / 1000);
+    const total = ratePerSecond * secondsPassed;
+    document.getElementById('counter').textContent = "$" + total.toLocaleString();
+  }
 
-    function formatBigInt(num) {
-      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+  setInterval(updateCounter, 1000);
+  updateCounter();
+</script>
 
-    function startCounter() {
-      const startTime = new Date("2025-06-09T00:00:00Z").getTime();
-      const ratePerSecond = BigInt(20000000000);
-
-      function update() {
-        const now = Date.now();
-        const secondsPassed = BigInt(Math.floor((now - startTime) / 1000));
-        const total = ratePerSecond * secondsPassed;
-        counterEl.textContent = "$" + formatBigInt(total);
-        requestAnimationFrame(update);
-      }
-      update();
-    }
-
-    function tryLogin() {
-      const input = passwordInput.value.trim();
-      if (input === PASSWORD) {
-        passwordGate.style.display = "none";
-        mainContent.style.display = "flex";
-        startCounter();
-      } else {
-        alert("Incorrect password.");
-        passwordInput.value = "";
-      }
-    }
-
-    submitBtn.addEventListener('click', tryLogin);
-    passwordInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') tryLogin();
-    });
-  </script>
 </body>
 </html>

@@ -6,19 +6,14 @@
 <title>World Getting Richer Every Moment</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
 <style>
-  /* Reset */
   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
   }
   body {
     font-family: 'Inter', 'Poppins', sans-serif;
     background: linear-gradient(135deg, #1c1f3a, #2a2f58);
     color: #e0e7ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; justify-content: center; align-items: center;
     height: 100vh;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
@@ -38,15 +33,11 @@
     border: 1px solid rgba(147, 197, 253, 0.2);
   }
   header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    display: flex; justify-content: center; align-items: center; gap: 1rem;
     margin-bottom: 2rem;
   }
   header svg {
-    width: 48px;
-    height: 48px;
+    width: 48px; height: 48px;
     fill: #3b82f6;
     filter: drop-shadow(0 0 5px #3b82f6);
     animation: pulse 3s infinite ease-in-out;
@@ -56,8 +47,7 @@
     50% { opacity: 0.7; transform: scale(1.1); }
   }
   h1 {
-    font-weight: 700;
-    font-size: 2.8rem;
+    font-weight: 700; font-size: 2.8rem;
     color: #bfdbfe;
     text-shadow: 0 0 6px #3b82f6;
     user-select: none;
@@ -183,6 +173,8 @@
       document.getElementById('mainContent').style.display = 'block';
     } else {
       alert('Incorrect password.');
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordInput').focus();
     }
   });
 
@@ -190,12 +182,17 @@
   const ratePerSecond = 20000000000;
 
   function updateCounter() {
-    const now = new Date().getTime();
+    const now = Date.now();
     const secondsPassed = Math.floor((now - startTime) / 1000);
+    if (secondsPassed < 0) {
+      document.getElementById('counter').textContent = "$0";
+      return;
+    }
     const total = ratePerSecond * secondsPassed;
     document.getElementById('counter').textContent = "$" + total.toLocaleString();
   }
 
+  // Update every second
   setInterval(updateCounter, 1000);
   updateCounter();
 </script>

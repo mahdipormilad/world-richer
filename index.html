@@ -2,187 +2,83 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>World Getting Richer Every Moment</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>World Getting Richer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Inter', 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, #0f172a, #1e293b);
     color: #e0e7ff;
-    display: flex; justify-content: center; align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
   }
-  .container {
-    background: rgba(14, 22, 41, 0.85);
-    backdrop-filter: saturate(180%) blur(18px);
-    border-radius: 2rem;
-    box-shadow:
-      0 0 25px rgba(96, 165, 250, 0.6),
-      0 0 50px rgba(59, 130, 246, 0.3);
-    padding: 3rem 4rem;
-    max-width: 700px;
-    width: 100%;
-    text-align: center;
-    border: 1.5px solid rgba(96, 165, 250, 0.3);
-    user-select: none;
-  }
-  header {
-    display: flex; justify-content: center; align-items: center; gap: 1rem;
-    margin-bottom: 2.5rem;
-  }
-  header svg {
-    width: 52px; height: 52px;
-    fill: #3b82f6;
-    filter: drop-shadow(0 0 6px #3b82f6);
-    animation: pulse 3s infinite ease-in-out;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.75; transform: scale(1.1); }
-  }
-  h1 {
-    font-weight: 700; font-size: 3rem;
-    color: #bfdbfe;
-    text-shadow: 0 0 8px #3b82f6;
-  }
-  .counter-wrapper {
-    width: 100%;
-    max-width: 670px;
-    height: 5rem;
-    overflow: hidden;
-    border-radius: 1.2rem;
-    border: 3px solid #60a5fa;
-    background: rgba(14, 22, 41, 0.95);
-    margin: 2rem auto 3rem;
-    box-shadow:
-      0 0 12px #60a5fa,
-      inset 0 0 15px #3b82f6;
-    position: relative;
-  }
-  .counter {
-    position: absolute;
-    white-space: nowrap;
-    font-size: 3.6rem;
+  .main-counter {
+    font-size: 3.2rem;
     font-weight: 700;
     color: #60a5fa;
-    text-shadow:
-      0 0 6px #60a5fa,
-      0 0 20px #3b82f6,
-      0 0 40px #2563eb;
-    will-change: transform;
-    user-select: none;
+    text-shadow: 0 0 8px #3b82f6, 0 0 20px #2563eb;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    word-break: break-word;
+    max-width: 90vw;
   }
   .details {
-    font-size: 1.2rem;
-    color: #a5b4fc;
-    user-select: none;
-    line-height: 1.7;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 500px;
+    text-align: center;
   }
   .details p {
     margin: 0.5rem 0;
-    transition: color 0.3s ease;
-  }
-  .details p:hover {
-    color: #3b82f6;
-    cursor: default;
+    font-size: 1.1rem;
+    color: #a5b4fc;
   }
   #passwordGate {
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
+    background: #0f172a;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 9999;
-    backdrop-filter: blur(12px);
+    z-index: 1000;
   }
   #passwordInput {
-    padding: 1rem 1.4rem;
-    border-radius: 1.2rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
     border: none;
-    font-size: 1.3rem;
-    outline: none;
-    width: 280px;
-    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+    width: 250px;
+    margin-bottom: 1rem;
     text-align: center;
-    box-shadow: 0 0 15px #3b82f6 inset;
-    background: rgba(59, 130, 246, 0.12);
-    color: #e0e7ff;
-    transition: background 0.3s ease;
-  }
-  #passwordInput::placeholder {
-    color: #93c5fd;
-  }
-  #passwordInput:focus {
-    background: rgba(59, 130, 246, 0.3);
   }
   #submitBtn {
-    padding: 1rem 2.6rem;
-    border-radius: 1.2rem;
-    border: none;
-    font-weight: 700;
+    padding: 0.8rem 2rem;
+    font-weight: bold;
     background: #3b82f6;
-    color: #0f172a;
+    color: #fff;
+    border: none;
+    border-radius: 0.75rem;
     cursor: pointer;
-    box-shadow: 0 0 22px #3b82f6;
-    transition: background 0.3s ease;
-    user-select: none;
-  }
-  #submitBtn:hover {
-    background: #2563eb;
-  }
-  @media (max-width: 480px) {
-    .container {
-      padding: 2rem 2.5rem;
-      max-width: 90vw;
-    }
-    .counter-wrapper {
-      height: 4rem;
-    }
-    .counter {
-      font-size: 2.8rem;
-    }
-    h1 {
-      font-size: 2.4rem;
-    }
-    #passwordInput {
-      width: 220px;
-      font-size: 1.1rem;
-    }
-    #submitBtn {
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-    }
   }
 </style>
 </head>
 <body>
-
 <div id="passwordGate">
-  <input type="password" id="passwordInput" placeholder="Enter Password" autocomplete="off" />
+  <input type="password" id="passwordInput" placeholder="Enter Password" />
   <button id="submitBtn">Enter</button>
 </div>
 
-<div class="container" id="mainContent" style="display:none;">
-  <header>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" role="img" >
-      <circle cx="32" cy="32" r="30" stroke="#60a5fa" stroke-width="2" fill="none" />
-      <path stroke="#3b82f6" stroke-width="3" fill="none" d="M32 2a30 30 0 0 1 0 60 30 30 0 0 1 0-60z" />
-      <circle cx="32" cy="32" r="12" stroke="#3b82f6" stroke-width="2" fill="none" />
-    </svg>
-    <h1>World Getting Richer Every Moment</h1>
-  </header>
-  <div class="counter-wrapper">
-    <div class="counter" id="counter">$0</div>
-  </div>
+<div id="mainContent" style="display:none;">
+  <div class="main-counter" id="counter">$0</div>
   <div class="details">
     <p>Every second: $20,000,000,000</p>
     <p>Every minute: $1,200,000,000,000</p>
@@ -195,80 +91,46 @@
 
 <script>
   const PASSWORD = "dream2025";
-
   const passwordGate = document.getElementById('passwordGate');
   const mainContent = document.getElementById('mainContent');
   const passwordInput = document.getElementById('passwordInput');
   const submitBtn = document.getElementById('submitBtn');
   const counterEl = document.getElementById('counter');
 
-  function savePassword() {
-    localStorage.setItem('accessPassword', PASSWORD);
+  function formatBigInt(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  function checkSavedPassword() {
-    return localStorage.getItem('accessPassword') === PASSWORD;
-  }
-
-  function formatNumberBigInt(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
-  function startCounterAnimation() {
-    const startTimestamp = new Date("2025-06-09T00:00:00Z").getTime();
+  function startCounter() {
+    const startTime = new Date("2025-06-09T00:00:00Z").getTime();
     const ratePerSecond = BigInt(20000000000);
 
     function update() {
       const now = Date.now();
-      const diffSeconds = BigInt(Math.floor((now - startTimestamp) / 1000));
-      const currentValue = ratePerSecond * diffSeconds;
-
-      counterEl.textContent = "$" + formatNumberBigInt(currentValue);
-
-      const speed = 0.5;
-      const currentX = parseFloat(counterEl.style.transform.replace("translateX(", "").replace("px)", "")) || 0;
-      let newX = currentX - speed;
-      const maxScroll = -counterEl.offsetWidth;
-      if (newX < maxScroll) {
-        newX = counterEl.parentElement.offsetWidth;
-      }
-      counterEl.style.transform = `translateX(${newX}px)`;
-
+      const secondsPassed = BigInt(Math.floor((now - startTime) / 1000));
+      const total = ratePerSecond * secondsPassed;
+      counterEl.textContent = "$" + formatBigInt(total);
       requestAnimationFrame(update);
     }
-    requestAnimationFrame(update);
+    update();
   }
 
-  function tryAccess() {
+  function tryLogin() {
     const input = passwordInput.value.trim();
     if (input === PASSWORD) {
-      savePassword();
       passwordGate.style.display = "none";
       mainContent.style.display = "block";
-      startCounterAnimation();
+      startCounter();
     } else {
-      alert("Incorrect password. Try again.");
+      alert("Incorrect password.");
       passwordInput.value = "";
-      passwordInput.focus();
     }
   }
 
-  submitBtn.addEventListener('click', tryAccess);
-
+  submitBtn.addEventListener('click', tryLogin);
   passwordInput.addEventListener('keydown', (e) => {
-    if (e.key === "Enter") {
-      tryAccess();
-    }
+    if (e.key === 'Enter') tryLogin();
   });
-
-  if (checkSavedPassword()) {
-    passwordGate.style.display = "none";
-    mainContent.style.display = "block";
-    startCounterAnimation();
-  } else {
-    passwordInput.focus();
-  }
 </script>
-
 </body>
 </html>

@@ -52,16 +52,32 @@
     text-shadow: 0 0 6px #3b82f6;
     user-select: none;
   }
+  .counter-wrapper {
+    width: 100%;
+    max-width: 650px;
+    height: 4.5rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 2px solid #60a5fa;
+    background: rgba(14, 22, 41, 0.9);
+    margin: 2rem auto 3rem;
+    box-shadow:
+      0 0 10px #60a5fa,
+      inset 0 0 10px #3b82f6;
+    position: relative;
+  }
   .counter {
-    margin: 2rem 0 3rem;
-    font-size: 3.8rem;
-    font-weight: 600;
+    position: absolute;
+    white-space: nowrap;
+    font-size: 3.2rem;
+    font-weight: 700;
     color: #60a5fa;
-    letter-spacing: 0.1em;
     text-shadow:
       0 0 5px #60a5fa,
       0 0 15px #3b82f6,
       0 0 30px #2563eb;
+    will-change: transform;
+    user-select: none;
   }
   .details {
     font-size: 1.15rem;
@@ -127,6 +143,9 @@
       padding: 2rem 2.5rem;
       max-width: 90vw;
     }
+    .counter-wrapper {
+      height: 3.5rem;
+    }
     .counter {
       font-size: 2.4rem;
     }
@@ -152,7 +171,9 @@
     </svg>
     <h1>World Getting Richer Every Moment</h1>
   </header>
-  <div class="counter" id="counter">$0</div>
+  <div class="counter-wrapper">
+    <div class="counter" id="counter">$0</div>
+  </div>
   <div class="details">
     <p>Every second: $20,000,000,000</p>
     <p>Every minute: $1,200,000,000,000</p>
@@ -171,6 +192,7 @@
     if (input === PASSWORD) {
       document.getElementById('passwordGate').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
+      startCounterAnimation();
     } else {
       alert('Incorrect password.');
       document.getElementById('passwordInput').value = '';
@@ -181,21 +203,5 @@
   const startTime = new Date("2025-06-09T00:00:00Z").getTime();
   const ratePerSecond = 20000000000;
 
-  function updateCounter() {
-    const now = Date.now();
-    const secondsPassed = Math.floor((now - startTime) / 1000);
-    if (secondsPassed < 0) {
-      document.getElementById('counter').textContent = "$0";
-      return;
-    }
-    const total = ratePerSecond * secondsPassed;
-    document.getElementById('counter').textContent = "$" + total.toLocaleString();
-  }
-
-  // Update every second
-  setInterval(updateCounter, 1000);
-  updateCounter();
-</script>
-
-</body>
-</html>
+  const counterEl = document.getElementById('counter');
+  const wrapperEl = document.querySelector

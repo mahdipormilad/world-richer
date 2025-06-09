@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World Getting Richer Every Moment</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>World Wealth Counter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #0f172a, #1e293b);
@@ -20,60 +21,142 @@
       align-items: center;
       height: 100vh;
       text-align: center;
+      overflow: hidden;
+      padding: 1rem;
     }
+
     .container {
-      max-width: 600px;
+      max-width: 900px;
+      width: 100%;
       padding: 2rem;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 2rem;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
-      backdrop-filter: blur(20px);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(30px);
     }
+
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
+
     .counter {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       font-weight: 600;
       color: #38bdf8;
       margin: 1.5rem 0;
+      white-space: nowrap;
+      overflow-x: auto;
+      min-width: 450px; /* Fixed width */
+      font-variant-numeric: tabular-nums; /* Monospaced numbers */
     }
+
     .details p {
       margin: 0.3rem 0;
       color: #cbd5e1;
+    }
+
+    .info-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: #94a3b8;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .info-bar span {
+      background: rgba(255, 255, 255, 0.07);
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      display: inline-block;
+      min-width: 140px; /* Fixed width */
+      text-align: center;
+      font-variant-numeric: tabular-nums; /* Monospaced numbers */
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .counter {
+        font-size: 2.2rem;
+        min-width: 100%;
+      }
+      .info-bar {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>World Getting Richer Every Moment</h1>
-  <div class="counter" id="counter">$0</div>
-  <div class="details">
-    <p>Every second: $20,000,000,000</p>
-    <p>Every minute: $1,200,000,000,000</p>
-    <p>Every hour: $72,000,000,000,000</p>
-    <p>Every day: $1,728,000,000,000,000</p>
-    <p>Every month: $52,560,000,000,000,000</p>
-    <p>Every year: $630,720,000,000,000,000</p>
+  <div class="container">
+    <h1>World Getting Richer Every Moment</h1>
+    <div class="counter" id="counter">$0</div>
+
+    <div class="details">
+      <p>Every second: $20,000,000,000 (20B)</p>
+      <p>Every minute: $1,200,000,000,000 (1.2T)</p>
+      <p>Every hour: $72,000,000,000,000 (72T)</p>
+      <p>Every day: $1,728,000,000,000,000 (1.728Q)</p>
+      <p>Every month: $52,560,000,000,000,000 (52.56Q)</p>
+      <p>Every year: $630,720,000,000,000,000 (630.72Q)</p>
+    </div>
+
+    <div class="info-bar">
+      <span id="year">Year: 0</span>
+      <span id="day">Day: 159</span>
+      <span id="localTime">Local Time: --:--:--</span>
+    </div>
   </div>
-</div>
 
-<script>
-  const startTime = new Date("2025-06-09T00:00:00Z").getTime();
-  const ratePerSecond = 20000000000;
+  <script>
+    const ratePerSecond = 20000000000;
+    const startTime = new Date("2025-01-01T00:00:00Z");
 
-  function updateCounter() {
-    const now = new Date().getTime();
-    const secondsPassed = Math.floor((now - startTime) / 1000);
-    const total = ratePerSecond * secondsPassed;
-    document.getElementById('counter').textContent = "$" + total.toLocaleString();
-  }
+    function getUnitLabel(num) {
+      if (num >= 1e15) return 'Q'; // Quadrillion
+      if (num >= 1e12) return 'T'; // Trillion
+      if (num >= 1e9) return 'B';  // Billion
+      if (num >= 1e6) return 'M';  // Million
+      return '';
+    }
 
-  setInterval(updateCounter, 1000);
-  updateCounter();
-</script>
+    function updateCounter(now) {
+      const secondsPassed = Math.floor((now - startTime) / 1000);
+      const total = ratePerSecond * secondsPassed;
+      const unit = getUnitLabel(total);
+      const formatted = "$" + total.toLocaleString('en-US');
+      document.getElementById("counter").textContent = formatted + ` (${unit})`;
+    }
+
+    function updateDayYear(now) {
+      const diffTime = now - startTime;
+      const daysPassed = Math.floor(diffTime / 86400000);
+      const years = Math.floor(daysPassed / 365);
+      document.getElementById("year").textContent = `Year: ${years}`;
+      document.getElementById("day").textContent = `Day: ${daysPassed}`;
+    }
+
+    function updateLocalClock(now) {
+      document.getElementById("localTime").textContent =
+        "Local Time: " + now.toLocaleTimeString();
+    }
+
+    function updateAll() {
+      const now = new Date();
+      updateCounter(now);
+      updateDayYear(now);
+      updateLocalClock(now);
+    }
+
+    setInterval(updateAll, 1000);
+    updateAll();
+  </script>
 
 </body>
 </html>
